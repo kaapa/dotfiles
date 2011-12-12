@@ -30,14 +30,6 @@
 	path = vim/bundle/indexedsearch
 	url = https://github.com/vim-scripts/IndexedSearch
   ignore = untracked
-[submodule "vim/snippets"]
-	path = vim/snippets
-	url = https://github.com/scrooloose/snipmate-snippets
-  ignore = untracked
-[submodule "vim/bundle/snipmate"]
-	path = vim/bundle/snipmate
-	url = https://github.com/mikefarmer/snipmate.vim.git
-  ignore = untracked
 [submodule "vim/bundle/ruby"]
 	path = vim/bundle/ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
