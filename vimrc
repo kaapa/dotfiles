@@ -1,4 +1,5 @@
-call pathogen#infect()
+call pathogen#infect()          " initialize plugins in ~/.vim/bundle
+call pathogen#helptags()        " build plugins' helptags
 
 let mapleader = ","
 
