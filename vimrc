@@ -1,5 +1,7 @@
 call pathogen#infect()
 
+let mapleader = ","
+
 " Move between splits
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -15,42 +17,25 @@ nmap <leader>D :bufdo bd<CR>
 set background=dark
 colorscheme solarized
 
-filetype plugin indent on
-let mapleader = ","
-
 set nocompatible
-
-set number
-set ruler
-syntax on
-
-" Set encoding
+syntax enable
 set encoding=utf-8
+set showcmd                     " display incomplete commands
+filetype plugin indent on       " load file type plugins + indentation
 
-" Whitespace stuff
-set nowrap
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set list listchars=tab:\ \ ,trail:·
+"" Whitespace
+set nowrap                      " don't wrap lines
+set tabstop=2 shiftwidth=2      " a tab is two spaces
+set expandtab                   " use spaces, not tabs
+set backspace=indent,eol,start  " backspace through everything in insert mode
 
-" indent
-set ai " autoindent
-set si " smart indent
-set smarttab
-set autoindent
+"" Searching
+set hlsearch                    " highlight matches
+set incsearch                   " incremental searching
+set ignorecase                  " searches are case insensitive...
+set smartcase                   " ... unless they contain at least one capital letter
 
 set formatoptions-=o "dont continue comments when pushing o/O
-
-"hide buffers when not displayed
-set hidden
-
-" Searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
 
 " Tab completion
 set wildmode=list:longest,list:full
@@ -59,33 +44,12 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 " Status bar
 set laststatus=2
 
-" Without setting this, ZoomWin restores windows in a way that causes
-" equalalways behavior to be triggered the next time CommandT is used.
-" This is likely a bludgeon to solve some other issue, but it works
-set noequalalways
-
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-" Swap and backup files
+" Disable swap and backup files
 set noswapfile
 set nobackup
 set nowb
 
-set statusline=%F%m%r%h%w[%L]%y[%p%%][%04v][%{fugitive#statusline()}]
-"              | | | | |  |   |  |      |
-"              | | | | |  |   |  |      |
-"              | | | | |  |   |  |      |
-"              | | | | |  |   |  |      |
-"              | | | | |  |   |  |      +-- current column
-"              | | | | |  |   |  +-- current % into file
-"              | | | | |  |   +-- current fileformat
-"              | | | | |  +-- number of lines
-"              | | | | +-- preview flag in square brackets
-"              | | | +-- help flag in square brackets
-"              | | +-- readonly flag in square brackets
-"              | +-- modified flag in square brackets
-"              +-- full path to file in the rbuffer
+set statusline=%F\ %y\ %{fugitive#statusline()}\ %m%r%h%w%=[%p%%][%L][%02v]
 
 " Autodelte trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
@@ -104,7 +68,7 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 5
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>" 
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Syntastic configuration
 let g:syntastic_enable_signs=1
