@@ -1,0 +1,37 @@
+[user]
+  name = Petteri Kääpä
+  email = petteri.kaapa@gmail.com
+[github]
+  user = kaapa
+  token = token
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[alias]
+  st = status -bs
+  ci = commit
+  br = branch
+  bl = blame -C
+  co = checkout
+  df = diff --word-diff
+  lg = log -p
+  l1 = log --oneline --decorate
+[core]
+  editor = /usr/local/bin/vim
+  quotepath = false
+[push]
+  default = tracking
