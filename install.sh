@@ -1,10 +1,6 @@
 #!/bin/sh
-# if [ ! -d ~/.oh-my-zsh ]
-# then
-#   echo "\033[0;33mGetting dotf\033[0m You'll need to remove ~/.dotfiles if you want to install"
-#   /usr/bin/env git clone https://github.com/kaapa/dotfiles ~/.dotfiles
-#   exit
-# fi
+shopt -s nocasematch
+
 white="\033[0m"
 red="\033[0;31m"
 green="\033[0;32m"
@@ -31,7 +27,7 @@ function install() {
   fi
 }
 
-function symlink() {
+function backup(){
   local source=$1
   local target=$2
   echo ""
@@ -46,16 +42,45 @@ function symlink() {
       rm -R "$target"
     fi
   fi
+}
+
+function copy() {
+  local source=$1
+  local target=$2
+  backup $source $target
+  cp -R "$source" "$target"
+  echo "${green}Created ${target}"
+}
+
+function symlink() {
+  local source=$1
+  local target=$2
+  backup $source $target
   ln -s "$source" "$target"
   echo "${green}Created symbolic link ${target}"
 }
 
-echo "${white}Detecting OS..."
 if [[ $OSTYPE =~ "darwin" ]]; then
 
-  echo "${green}OS X detected"
+  echo "\n${white}This installation script will try to install the following tools:"
+
+  echo "\n${white}* Homebrew"
+  echo "${white}* Git"
+  echo "${white}* Mercurial"
+  echo "${white}* Vim"
+  echo "${white}* ZSH"
+  echo "${white}* Exuberant ctags"
+
+  echo "\n${white}Continue? [y/n] \c"
+
+  read continue
+
+  if [[ ! "y|yes" =~ $continue ]]; then
+    exit
+  fi
 
   install "Homebrew" "brew" '/usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"'
+  install "Git" "git" "brew install git"
   install "Mercurial" "hg" "brew install hg"
   install "Vim" "vim" "brew install https://raw.github.com/adamv/homebrew-alt/master/duplicates/vim.rb"
   install "ZSH" "zsh" "brew install zsh"
@@ -72,11 +97,12 @@ if [[ $OSTYPE =~ "darwin" ]]; then
     echo "${green}/usr/local/bin was already in /etc/paths"
   fi
 
-  echo "\n${white}Creating symbolic links for the configuration files..."
+  echo "\n${white}Setting up the configuration files..."
 
   symlink ~/".dotfiles/vimrc" ~/".vimrc"
   symlink ~/".dotfiles/vim" ~/".vim"
   symlink ~/".dotfiles/zshrc" ~/".zshrc"
+  copy ~/".dotfiles/gitconfig" ~/".gitconfig"
 
   echo  "\n${white}Starting Vim to install bundles\c"
 
@@ -103,5 +129,24 @@ if [[ $OSTYPE =~ "darwin" ]]; then
 
 else
 
-  echo "${green}Linux detected"
+  if ! which "apt-get" > /dev/null; then
+    echo "\n${red}Apt package manager was not found. Aborting installation"
+    exit
+  fi
+
+  echo "\n${white}This installation script will install the following tools unless already present:"
+
+  echo "\n${white}* Git"
+  echo "${white}* Vim"
+  echo "${white}* ZSH"
+  echo "${white}* Exuberant ctags"
+
+  echo "\n${white}Continue? [y/n] \c"
+
+  read continue
+
+  if [[ ! "y|yes" =~ $continue ]]; then
+    exit
+  fi
+
 fi
