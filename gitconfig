@@ -1,9 +1,3 @@
-[user]
-  name = Petteri Kääpä
-  email = petteri.kaapa@gmail.com
-[github]
-  user = kaapa
-  token = token
 [color]
   branch = auto
   diff = auto
@@ -30,8 +24,7 @@
   df = diff --word-diff
   lg = log -p
   l1 = log --oneline --decorate
-[core]
-  editor = /usr/local/bin/vim
-  quotepath = false
 [push]
   default = tracking
+[core]
+  quotepath = false

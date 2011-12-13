@@ -27,82 +27,41 @@ function install() {
   fi
 }
 
-function backup(){
+function install_dotfile() {
   local source=$1
   local target=$2
+  local command=$3
   echo ""
-  if [ -f "$target" ] || [ -h "$target" ]; then
-    echo "${yellow}Found ${target}"
-    if diff "$source" "$target" > /dev/null; then
-      echo "${green}The same version of $target already existed"
+  if [ -d "$target" ] || [ -f "$target" ] || [ -h "$target" ]; then
+    echo "${yellow}${target} already exists"
+    if [ ! -d "$target" ] && diff "$source" "$target" > /dev/null; then
+      echo "${green}Skipping to next file as files are identical"
       return
     else
       echo "${white}Backing it up to ${target}-original";
-      cp -RH "$target" "${target}-original"
-      rm -R "$target"
+      rm -Rf "${target}-original"
+      mv -f "$target" "${target}-original"
     fi
   fi
-}
-
-function copy() {
-  local source=$1
-  local target=$2
-  backup $source $target
-  cp -R "$source" "$target"
+  eval $command
   echo "${green}Created ${target}"
 }
 
-function symlink() {
-  local source=$1
-  local target=$2
-  backup $source $target
-  ln -s "$source" "$target"
-  echo "${green}Created symbolic link ${target}"
+function copy_dotfile() {
+  install_dotfile $1 $2 "cp -R '${1}' '${2}'"
 }
 
-if [[ $OSTYPE =~ "darwin" ]]; then
+function symlink_dotfile() {
+  install_dotfile $1 $2 "ln -s '${1}' '${2}'"
+}
 
-  echo "\n${white}This installation script will try to install the following tools:"
-
-  echo "\n${white}* Homebrew"
-  echo "${white}* Git"
-  echo "${white}* Mercurial"
-  echo "${white}* Vim"
-  echo "${white}* ZSH"
-  echo "${white}* Exuberant ctags"
-
-  echo "\n${white}Continue? [y/n] \c"
-
-  read continue
-
-  if [[ ! "y|yes" =~ $continue ]]; then
-    exit
-  fi
-
-  install "Homebrew" "brew" '/usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"'
-  install "Git" "git" "brew install git"
-  install "Mercurial" "hg" "brew install hg"
-  install "Vim" "vim" "brew install https://raw.github.com/adamv/homebrew-alt/master/duplicates/vim.rb"
-  install "ZSH" "zsh" "brew install zsh"
-
-  echo "\n${white}OS X provides a version of Exuberant ctags incompatible with Vim's TagList plugin"
-  install "Exuberant ctags" "/usr/local/bin/ctags" "brew install ctags"
-  echo "${white}To override incompatible system provided ctags we need to add Homebrew binaries to Vim's path"
-  echo "${white}Detecting if /etc/paths contains Homebrew's package path (/usr/local/bin)..."
-
-  if ! grep /usr/local/bin /etc/paths > /dev/null; then
-    echo "/usr/local/bin"|cat - /etc/paths > /tmp/out && sudo mv /tmp/out /etc/paths
-    echo "${green}/usr/local/bin has been added to /etc/paths"
-  else
-    echo "${green}/usr/local/bin was already in /etc/paths"
-  fi
-
+function configure() {
   echo "\n${white}Setting up the configuration files..."
 
-  symlink ~/".dotfiles/vimrc" ~/".vimrc"
-  symlink ~/".dotfiles/vim" ~/".vim"
-  symlink ~/".dotfiles/zshrc" ~/".zshrc"
-  copy ~/".dotfiles/gitconfig" ~/".gitconfig"
+  symlink_dotfile ~/".dotfiles/vimrc" ~/".vimrc"
+  symlink_dotfile ~/".dotfiles/vim" ~/".vim"
+  symlink_dotfile ~/".dotfiles/zshrc" ~/".zshrc"
+  copy_dotfile ~/".dotfiles/gitconfig" ~/".gitconfig"
 
   echo  "\n${white}Starting Vim to install bundles\c"
 
@@ -127,6 +86,75 @@ if [[ $OSTYPE =~ "darwin" ]]; then
 
   chsh -s /bin/zsh
 
+  echo "  editor = `which vim`" >> ~/.gitconfig
+
+  echo "\n${white}Your name for Git configuration? \c"
+  read git_name
+
+  echo "\n${white}Your email for Git configuration? \c"
+  read git_email
+
+  echo "[user]\n  name = ${git_name}\n  email = ${git_email}" >> ~/.gitconfig
+
+  echo "\n${white}Do you use Github? [y/n] \c"
+
+  read use_github
+
+  if [[ "y|yes" =~ $use_github ]]; then
+
+    echo "\n${white}What is your github username? \c"
+    read github_user
+
+    echo "\n${white}What is your github token? \c"
+    read github_token
+
+    echo "[github]\n  user = ${github_user}\n  token = ${github_token}" >> ~/.gitconfig
+  fi
+}
+
+if [[ $OSTYPE =~ "darwin" ]]; then
+
+  echo "\n${white}This installation script will try to install the following tools:"
+
+  echo "\n${white}* Homebrew"
+  echo "${white}* Git"
+  echo "${white}* Mercurial"
+  echo "${white}* Vim"
+  echo "${white}* ZSH"
+  echo "${white}* Ack"
+  echo "${white}* Exuberant ctags"
+
+  echo "\n${white}Continue? [y/n] \c"
+
+  read continue
+
+  if [[ ! "y|yes" =~ $continue ]]; then
+    exit
+  fi
+
+  echo "${white}Installing tools..."
+
+  install "Homebrew" "brew" '/usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"'
+  install "Git" "git" "brew install git"
+  install "Mercurial" "hg" "brew install hg"
+  install "Vim" "vim" "brew install https://raw.github.com/adamv/homebrew-alt/master/duplicates/vim.rb"
+  install "ZSH" "zsh" "brew install zsh"
+  install "Ack" "ack" "brew install ack"
+
+  echo "\n${white}OS X provides a version of Exuberant ctags incompatible with Vim's TagList plugin"
+  install "Exuberant ctags" "/usr/local/bin/ctags" "brew install ctags"
+  echo "${white}To override incompatible system provided ctags we need to add Homebrew binaries to Vim's path"
+  echo "${white}Detecting if /etc/paths contains Homebrew's package path (/usr/local/bin)..."
+
+  if ! grep /usr/local/bin /etc/paths > /dev/null; then
+    echo "/usr/local/bin"|cat - /etc/paths > /tmp/out && sudo mv /tmp/out /etc/paths
+    echo "${green}/usr/local/bin has been added to /etc/paths"
+  else
+    echo "${green}/usr/local/bin was already in /etc/paths"
+  fi
+
+  configure
+
 else
 
   if ! which "apt-get" > /dev/null; then
@@ -148,5 +176,15 @@ else
   if [[ ! "y|yes" =~ $continue ]]; then
     exit
   fi
+
+  echo "${white}Installing tools..."
+
+  install "Git" "git" "sudo apt-get install git"
+  install "Vim" "vim" "sudo apt-get install vim-nox"
+  install "ZSH" "zsh" "sudo apt-get install zsh"
+  install "Ack" "ack" "sudo apt-get install ack"
+  install "Exuberant ctags" "ctags" "sudo apt-get install exuberant-ctags"
+
+  configure
 
 fi
