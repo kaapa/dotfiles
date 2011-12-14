@@ -62,7 +62,8 @@ nmap <leader>d :bd<CR>          " delete current buffer
 nmap <leader>D :bufdo bd<CR>    " delete all buffers
 imap jj <ESC>                   " escape
 
-au FileType php nnoremap K :! open "http://fi2.php.net/<cword>"<CR><CR>
+au FileType php nnoremap K :! open "http://fi2.php.net/<cword>"<CR><CR>   " Show documentation for word under cursor
+au FileType php nnoremap <Leader>gc :Ack --type=php "class <cword>"<CR>   " Goto class definition for word under cursor
 
 set background=dark
 colorscheme solarized
