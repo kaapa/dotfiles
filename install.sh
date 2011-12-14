@@ -58,6 +58,7 @@ function symlink_dotfile() {
 function configure() {
   echo "\n${white}Setting up the configuration files..."
 
+  symlink_dotfile ~/".dotfiles/ctags" ~/".ctags"
   symlink_dotfile ~/".dotfiles/vimrc" ~/".vimrc"
   symlink_dotfile ~/".dotfiles/vim" ~/".vim"
   symlink_dotfile ~/".dotfiles/zshrc" ~/".zshrc"
