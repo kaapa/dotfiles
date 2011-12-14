@@ -1,3 +1,5 @@
+let mapleader = ","
+
 " Initialize vundle
 set nocompatible
 filetype off
@@ -35,7 +37,6 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'vim-scripts/AutoTag'
 Bundle 'vim-scripts/IndexedSearch'
 
 Bundle 'vim-scripts/taglist.vim'
@@ -46,11 +47,8 @@ Bundle 'vim-scripts/taglist.vim'
   let Tlist_Exit_OnlyWindow = 1           " exit when taglist is last window
   let Tlist_Enable_Fold_Column = 0        " hide foldings
   map <Leader>t :TlistToggle<CR>          " toggle taglist window
-  map <Leader>g <C-]>                     " goto definition under cursor
 
 filetype plugin indent on       " required by vundle
-
-let mapleader = ","
 
 nnoremap <C-h> <C-w>h           " move to window left of current window
 nnoremap <C-j> <C-w>j           " move to window below current window
@@ -63,6 +61,8 @@ vnoremap <S-Tab> <              " decrease indentation in visual mode
 nmap <leader>d :bd<CR>          " delete current buffer
 nmap <leader>D :bufdo bd<CR>    " delete all buffers
 imap jj <ESC>                   " escape
+
+au FileType php nnoremap K :! open "http://fi2.php.net/<cword>"<CR><CR>
 
 set background=dark
 colorscheme solarized
