@@ -58,6 +58,12 @@ function symlink_dotfile() {
 function configure() {
   echo "\n${white}Setting up the configuration files..."
 
+  git clone git://github.com/kaapa/dotfiles.git ~/.dotfiles
+
+  echo ""
+
+  git clone http://github.com/gmarik/vundle.git ~/.dotfiles/vim/bundle/vundle
+
   symlink_dotfile ~/".dotfiles/ctags" ~/".ctags"
   symlink_dotfile ~/".dotfiles/vimrc" ~/".vimrc"
   symlink_dotfile ~/".dotfiles/vim" ~/".vim"
