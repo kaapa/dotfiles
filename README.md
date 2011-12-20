@@ -4,7 +4,7 @@ A work in progess, inspired by the internet.
 
 ## Installation
 
-`wget --no-check-certificate https://github.com/kaapa/dotfiles/raw/master/install.sh -O - | sh`
+`wget --no-check-certificate https://raw.github.com/kaapa/dotfiles/master/install.sh -O - | sh`
 
 ## License
 
