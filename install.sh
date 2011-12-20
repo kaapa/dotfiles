@@ -64,6 +64,10 @@ function configure() {
 
   git clone http://github.com/gmarik/vundle.git ~/.dotfiles/vim/bundle/vundle
 
+  echo ""
+
+  git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
   symlink_dotfile ~/".dotfiles/ctags" ~/".ctags"
   symlink_dotfile ~/".dotfiles/vimrc" ~/".vimrc"
   symlink_dotfile ~/".dotfiles/vim" ~/".vim"
