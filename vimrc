@@ -73,6 +73,9 @@ syntax enable
 set encoding=utf-8
 set showcmd                     " display incomplete commands
 set number                      " show line numbers
+set hidden                      " don't unload buffer when abandoned
+                                " - preserves undo stack through :w
+                                " - allows to hide a modified buffer
 
 "" Whitespace
 set nowrap                      " don't wrap lines
