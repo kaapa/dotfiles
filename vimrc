@@ -8,6 +8,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Configure bundles to use
+Bundle 'jimenezrick/vimerl'
 Bundle 'VimClojure'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'kien/ctrlp.vim'
