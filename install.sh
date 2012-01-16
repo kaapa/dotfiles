@@ -134,6 +134,7 @@ if [[ $OSTYPE =~ "darwin" ]]; then
   echo "${white}* ZSH"
   echo "${white}* Ack"
   echo "${white}* Exuberant ctags"
+  echo "${white}* Rvm"
 
   echo "\n${white}Continue? [y/n] \c"
 
@@ -164,6 +165,8 @@ if [[ $OSTYPE =~ "darwin" ]]; then
     echo "${green}/usr/local/bin was already in /etc/paths"
   fi
 
+  install "Rvm" "rvm" "bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)"
+
   configure
 
 else
@@ -179,6 +182,7 @@ else
   echo "${white}* Vim"
   echo "${white}* ZSH"
   echo "${white}* Exuberant ctags"
+  echo "${white}* Rvm"
 
   echo "\n${white}Continue? [y/n] \c"
 
@@ -195,6 +199,7 @@ else
   install "ZSH" "zsh" "sudo apt-get install zsh"
   install "Ack" "ack" "sudo apt-get install ack"
   install "Exuberant ctags" "ctags" "sudo apt-get install exuberant-ctags"
+  install "Rvm" "rvm" "bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)"
 
   configure
 
