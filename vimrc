@@ -8,9 +8,9 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Configure bundles to use
-Bundle 'jimenezrick/vimerl'
-Bundle 'VimClojure'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'jimenezrick/vimerl'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
 
