@@ -74,8 +74,8 @@ nnoremap <Tab> :bn<CR>          " next buffer
 nnoremap <S-Tab> :bp<CR>        " previous buffer
 vnoremap <Tab> >                " increase indentation in visual mode
 vnoremap <S-Tab> <              " decrease indentation in visual mode
-nmap <leader>d :bd<CR>          " delete current buffer
-nmap <leader>D :bufdo bd<CR>    " delete all buffers
+nmap <Leader>d :bd<CR>          " delete current buffer
+nmap <Leader>D :bufdo bd<CR>    " delete all buffers
 imap jj <ESC>                   " escape
 
 au FileType php nnoremap K :! open "http://fi2.php.net/<cword>"<CR><CR>   " Show documentation for word under cursor
