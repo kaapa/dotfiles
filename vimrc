@@ -56,6 +56,16 @@ Bundle 'vim-scripts/taglist.vim'
 
 filetype plugin indent on       " required by vundle
 
+function! g:ToggleNuMode()
+  if(&rnu == 1)
+    set nu
+  else
+    set rnu
+  endif
+endfunc
+
+nnoremap <Leader>r :call g:ToggleNuMode()<cr>
+
 nnoremap <C-h> <C-w>h           " move to window left of current window
 nnoremap <C-j> <C-w>j           " move to window below current window
 nnoremap <C-k> <C-w>k           " move to window above current window
