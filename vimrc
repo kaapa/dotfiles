@@ -120,6 +120,8 @@ set nowb
 
 set statusline=%F\ %y\ %{fugitive#statusline()}\ %m%r%h%w%=[%p%%][%L][%02v]
 
+map <Leader>ct :!ctags --extra=+f --exclude=.git --exclude=log -R *<CR><CR>
+
 autocmd BufWritePre * :%s/\s\+$//e      " remove trailing whitespace on save
 
 " Include user's local vim config
