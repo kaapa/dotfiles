@@ -16,6 +16,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
   let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
+Bundle 'scrooloose/nerdcommenter'
 
 Bundle 'scrooloose/nerdtree'
   let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', '\.DS_Store']
