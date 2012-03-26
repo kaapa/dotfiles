@@ -41,3 +41,5 @@ open_ssh_tunnel () {
 random_string() {
   cat /dev/urandom|tr -dc "a-zA-Z0-9-_\$\?"|fold -w 9|head
 }
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
