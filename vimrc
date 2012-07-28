@@ -9,7 +9,6 @@ Bundle 'gmarik/vundle'
 
 " Configure bundles to use
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'jimenezrick/vimerl'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 
