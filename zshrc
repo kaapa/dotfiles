@@ -15,6 +15,8 @@ fi
 
 export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 
+export LC_CTYPE=en_US.UTF-8
+
 # Speed up git completion
 # http://talkings.org/post/5236392664/zsh-and-slow-git-completion
 __git_files () {
