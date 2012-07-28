@@ -9,7 +9,6 @@ Bundle 'gmarik/vundle'
 
 " Configure bundles to use
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'jimenezrick/vimerl'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 
@@ -19,26 +18,17 @@ Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdcommenter'
 
 Bundle 'scrooloose/nerdtree'
-  let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', '\.DS_Store']
+  map <Leader>n :NERDTreeToggle<CR>       " toggle NERDTree
+  let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
   let NERDTreeMinimalUI = 1               " hide bookmarks and help text
   let NERDTreeDirArrows = 1               " show arrows instead of + characters for directory folding
   let NERDTreeQuitOnOpen = 1              " hide NERDTree when a file is opened
-  map <Leader>n :NERDTreeToggle<CR>       " toggle NERDTree
 
 Bundle 'scrooloose/syntastic'
   let g:syntastic_enable_signs=1
   let g:syntastic_auto_jump=1
   let g:syntastic_auto_loc_list=1
   let g:syntastic_quiet_warnings=1
-
-Bundle 'Shougo/neocomplcache'
-  let g:neocomplcache_enable_at_startup = 1
-  let g:neocomplcache_enable_camel_case_completion = 1
-  let g:neocomplcache_enable_underbar_completion = 1
-  let g:neocomplcache_min_syntax_length = 5
-  let g:neocomplcache_snippets_dir = '~/.vim/snippets/'
-  inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-  inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
