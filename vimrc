@@ -18,11 +18,11 @@ Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdcommenter'
 
 Bundle 'scrooloose/nerdtree'
-  let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', '\.DS_Store']
+  map <Leader>n :NERDTreeToggle<CR>       " toggle NERDTree
+  let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
   let NERDTreeMinimalUI = 1               " hide bookmarks and help text
   let NERDTreeDirArrows = 1               " show arrows instead of + characters for directory folding
   let NERDTreeQuitOnOpen = 1              " hide NERDTree when a file is opened
-  map <Leader>n :NERDTreeToggle<CR>       " toggle NERDTree
 
 Bundle 'scrooloose/syntastic'
   let g:syntastic_enable_signs=1
