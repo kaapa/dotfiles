@@ -30,15 +30,6 @@ Bundle 'scrooloose/syntastic'
   let g:syntastic_auto_loc_list=1
   let g:syntastic_quiet_warnings=1
 
-Bundle 'Shougo/neocomplcache'
-  let g:neocomplcache_enable_at_startup = 1
-  let g:neocomplcache_enable_camel_case_completion = 1
-  let g:neocomplcache_enable_underbar_completion = 1
-  let g:neocomplcache_min_syntax_length = 5
-  let g:neocomplcache_snippets_dir = '~/.vim/snippets/'
-  inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-  inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
-
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
