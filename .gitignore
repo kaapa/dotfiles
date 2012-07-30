@@ -1,2 +1,4 @@
 .netrwhist
+emacs.d/auto-save-list
+emacs.d/elpa
 vim/bundle
