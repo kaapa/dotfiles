@@ -4,8 +4,7 @@
 
 (require 'dotfiles-packages)
 
-(dotfiles-install-packages '(color-theme-solarized
-                             css-mode
+(dotfiles-install-packages '(css-mode
                              expand-region
                              haml-mode
                              js2-mode
@@ -15,8 +14,6 @@
                              sass-mode
                              scss-mode
                              yaml-mode))
-
-(load-theme 'solarized-dark t)
 
 (global-set-key (kbd "M-@") 'er/expand-region)
 (global-set-key (kbd "M-#") 'er/contract-region)
