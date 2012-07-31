@@ -57,3 +57,7 @@
       ido-max-prospects 10
       ido-save-directory-list-file dotfiles-cache-dir
       ido-default-file-method 'selected-window)
+
+;; whitespace-mode
+(global-whitespace-mode t)
+(setq whitespace-style (quote (face trailing tabs lines empty)))
