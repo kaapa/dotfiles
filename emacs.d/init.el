@@ -12,5 +12,9 @@
 			     sass-mode
 			     scss-mode
 			     yaml-mode))
+                             expand-region
 
 (load-theme 'solarized-dark t)
+
+(global-set-key (kbd "M-@") 'er/expand-region)
+(global-set-key (kbd "M-#") 'er/contract-region)
