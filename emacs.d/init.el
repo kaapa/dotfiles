@@ -47,3 +47,13 @@
 
 ;; config changes made through the customize UI will be store here
 (setq custom-file "~/.emacs.d/custom.el")
+
+;; ido-mode
+(ido-mode t)
+(setq ido-enable-prefix nil
+      ido-enable-flex-matching t
+      ido-create-new-buffer 'always
+      ido-use-filename-at-point 'guess
+      ido-max-prospects 10
+      ido-save-directory-list-file dotfiles-cache-dir
+      ido-default-file-method 'selected-window)
