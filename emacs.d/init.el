@@ -18,3 +18,9 @@
 
 (global-set-key (kbd "M-@") 'er/expand-region)
 (global-set-key (kbd "M-#") 'er/contract-region)
+
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
