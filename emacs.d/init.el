@@ -24,3 +24,6 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
+
+;; don't indent using tabs
+(setq-default indent-tabs-mode nil)
