@@ -1,5 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d")
 
+(defvar dotfiles-cache-dir "~/.emacs.d/cache")
+
 (require 'dotfiles-packages)
 
 (dotfiles-install-packages '(color-theme-solarized
@@ -24,6 +26,21 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
+
+;; create cache dir if it doesn't exist
+(unless (file-exists-p dotfiles-cache-dir)
+  (make-directory dotfiles-cache-dir))
+
+;; store bookmarks in cache dir
+(setq bookmark-default-file (concat dotfiles-cache-dir "bookmarks")
+      bookmark-save-flag 1)
+
+;; store eshell alias and history info in cache dir
+(setq eshell-directory-name (concat dotfiles-cache-dir "/eshell/"))
+
+;; store semantic (emacs parser) db in cache dir
+(setq semanticdb-default-save-directory
+      (concat dotfiles-cache-dir "semanticdb"))
 
 ;; don't indent using tabs
 (setq-default indent-tabs-mode nil)
