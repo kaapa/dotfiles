@@ -27,3 +27,6 @@
 
 ;; don't indent using tabs
 (setq-default indent-tabs-mode nil)
+
+;; config changes made through the customize UI will be store here
+(setq custom-file "~/.emacs.d/custom.el")
