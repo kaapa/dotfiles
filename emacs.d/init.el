@@ -58,3 +58,5 @@
 ;; whitespace-mode
 (global-whitespace-mode t)
 (setq whitespace-style (quote (face trailing tabs lines empty)))
+
+(require 'custom)
