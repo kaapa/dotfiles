@@ -85,6 +85,10 @@
 ;; (bound to a)
 (put 'dired-find-alternate-file 'disabled nil)
 
+;; enable dired omit mode (hide temporary files)
+(require 'dired-x)
+(setq-default dired-omit-files-p t)
+
 (defun indent-whole-buffer ()
   "indent whole buffer and untabify it"
   (interactive)
