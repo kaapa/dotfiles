@@ -80,3 +80,14 @@
  '(region ((t (:background "black")))))
 
 (require 'custom)
+
+;; enable dired directory navigation in without opening a buffer per directory
+;; (bound to a)
+(put 'dired-find-alternate-file 'disabled nil)
+
+(defun indent-whole-buffer ()
+  "indent whole buffer and untabify it"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
