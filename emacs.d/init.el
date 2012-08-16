@@ -88,6 +88,8 @@
 ;; enable dired omit mode (hide temporary files)
 (require 'dired-x)
 (setq-default dired-omit-files-p t)
+;; only hide emacs temp files (by default hides dotfiles too)
+(setq dired-omit-files "^\\.?#")
 
 (defun indent-whole-buffer ()
   "indent whole buffer and untabify it"
