@@ -12,6 +12,7 @@
                              markdown-mode
                              multiple-cursors
                              rinari
+                             rvm
                              sass-mode
                              scss-mode
                              yaml-mode))
@@ -60,4 +61,40 @@
 (global-whitespace-mode t)
 (setq whitespace-style (quote (face trailing tabs lines empty)))
 
+;; rhtml-mode
+(add-to-list 'load-path "~/.emacs.d/vendor/rhtml")
+(require 'rhtml-mode)
+(add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . rhtml-mode))
+
+;; ruby mode
+(font-lock-add-keywords
+ 'ruby-mode
+ '(("\\<extend\\|include\\|require\\>" . font-lock-keyword-face) ;; keywords
+   ("\\<\\([0-9]+\\([eE][+-]?[0-9]*\\)?\\)\\>" 1 font-lock-string-face))) ;; numbers
+
+;; faces
+(custom-set-faces
+ '(erb-exec-face ((t nil)))
+ '(erb-out-face ((t nil)))
+ '(font-lock-string-face ((t (:foreground "blue"))))
+ '(highlight ((t (:background "black"))))
+ '(region ((t (:background "black")))))
+
 (require 'custom)
+
+;; enable dired directory navigation in without opening a buffer per directory
+;; (bound to a)
+(put 'dired-find-alternate-file 'disabled nil)
+
+;; enable dired omit mode (hide temporary files)
+(require 'dired-x)
+(setq-default dired-omit-files-p t)
+;; only hide emacs temp files (by default hides dotfiles too)
+(setq dired-omit-files "^\\.?#")
+
+(defun indent-whole-buffer ()
+  "indent whole buffer and untabify it"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
