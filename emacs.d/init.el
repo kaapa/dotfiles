@@ -97,3 +97,6 @@
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
+
+(setq scss-compile-at-save nil)
+(put 'upcase-region 'disabled nil)
