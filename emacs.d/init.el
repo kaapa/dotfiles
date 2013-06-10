@@ -7,7 +7,7 @@
 (dotfiles-install-packages '(css-mode
                              expand-region
                              haml-mode
-                             js2-mode
+                             ;; js2-mode
                              magit
                              markdown-mode
                              multiple-cursors
@@ -19,6 +19,7 @@
 
 (global-set-key (kbd "M-@") 'er/expand-region)
 (global-set-key (kbd "M-#") 'er/contract-region)
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
