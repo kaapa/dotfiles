@@ -10,6 +10,7 @@
                              js2-mode
                              magit
                              markdown-mode
+                             multiple-cursors
                              rinari
                              rvm
                              sass-mode
